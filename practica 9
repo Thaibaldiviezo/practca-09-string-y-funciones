@@ -1,0 +1,68 @@
+#include
+#include
+#include
+#include
+using namespace std;
+
+int leerEntero(string mensaje);
+void registrarProducto(string &producto, string &marca, int &cantidad);
+void mostrarProducto(string producto, string marca, int cantidad);
+
+int main()
+{
+string producto, marca;
+int cantidad;
+
+registrarProducto(producto, marca, cantidad);
+mostrarProducto(producto, marca, cantidad);
+
+return 0;
+}
+
+int leerEntero(string mensaje)
+{
+string texto;
+int numero;
+char extra;
+
+while(true)
+{
+    cout << mensaje;
+    getline(cin, texto);
+    istringstream entrada(texto);
+
+    if(entrada >> numero && !(entrada >> extra))
+        return numero;
+
+    cout << "Ingrese un numero entero." << endl;
+}
+}
+
+void registrarProducto(string &producto, string &marca, int &cantidad)
+{
+do
+{
+cout << "Ingrese nombre: ";
+getline(cin, producto);
+
+}while(producto.empty() || producto.length() < 3);
+
+do
+{
+    cout << "Ingrese marca: ";
+    getline(cin, marca);
+
+}while(marca.empty() || marca.length() < 3);
+
+do
+{
+    cantidad = leerEntero("Ingrese cantidad: ");
+
+}while(cantidad < 0);
+}
+
+void mostrarProducto(string producto, string marca, int cantidad)
+{
+cout << "Producto: " << producto << endl;
+cout << "Marca: " << marca << endl;
+cout << "Cantidad: " << cantidad << endl;
